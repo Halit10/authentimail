@@ -44,15 +44,15 @@ class User extends CI_Controller {
 		}
 		public function editUser(){
 			//make sure only people that are logged in can visit the page
-			if(! $this->session->has_userData("userId")){
+			if(! $this->session->has_userData("id")){
 				redirect("home");
 			}
 			$this->load->model("general/Gusers_model");
 			if($this->input->post()){
 				
-				$this->Gusers_model->editUser($this->input->post(),$this->session->userId);
+				$this->Gusers_model->editUser($this->input->post(),$this->session->id);
 			}
-			$data=$this->Gusers_model->getAllUserData($this->session->userId);
+			$data=$this->Gusers_model->getAllUserData($this->session->id);
 			$data["error"]=null;
 			$this->load->view("front/users/register_form",$data);
 			$this->load->view('front/defaults/front-footer.php');
@@ -68,7 +68,7 @@ class User extends CI_Controller {
 			$this->load->view('front/defaults/front-footer.php');
 		}
 		public function showProfile(){
-			if(!$this->session->has_userData("userId")){
+			if(!$this->session->has_userData("id")){
 				redirect("home");
 			}
 			$this->load->view("front/users/profile");

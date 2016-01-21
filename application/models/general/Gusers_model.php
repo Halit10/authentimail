@@ -82,7 +82,7 @@ Class Gusers_model extends CI_Model {
 
 		if (isset($result['email'])) {
 			
-			$this->session->set_userdata("userId",$result['Id']);
+			$this->session->set_userdata("id",$result['id']);
 				
 		}
 		if($error){
